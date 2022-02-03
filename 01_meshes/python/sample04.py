@@ -52,7 +52,7 @@ gmsh.model.geo.addVolume([l])
 gmsh.model.geo.synchronize()
 
 # We specify element sizes imposed by a size field, just because we can :-)
-funny = False
+funny = True
 f = gmsh.model.mesh.field.add("MathEval")
 if funny:
     gmsh.model.mesh.field.setString(f, "F", "2*Sin((x+y)/5) + 3")
