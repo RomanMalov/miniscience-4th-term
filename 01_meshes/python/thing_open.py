@@ -16,14 +16,14 @@ gmsh.initialize()
 # Let's merge an STL mesh that we would like to remesh (from the parent
 # directory):
 path = os.path.dirname(os.path.abspath(__file__))
-gmsh.merge(os.path.join(path, 'hoig.stl'))
+gmsh.merge(os.path.join(path, 'molot.stl'))
 
 # We first classify ("color") the surfaces by splitting the original surface
 # along sharp geometrical features. This will create new discrete surfaces,
 # curves and points.
 
 # Angle between two triangles above which an edge is considered as sharp:
-angle = 10
+angle = 1
 
 
 # For complex geometries, patches can be too complex, too elongated or too large
@@ -58,11 +58,11 @@ f = gmsh.model.mesh.field.add("MathEval")
 if funny:
     gmsh.model.mesh.field.setString(f, "F", "2*Sin((x+y)/5) + 3")
 else:
-    gmsh.model.mesh.field.setString(f, "F", "0.05")
+    gmsh.model.mesh.field.setString(f, "F", "0.1")
 gmsh.model.mesh.field.setAsBackgroundMesh(f)
 
 gmsh.model.mesh.generate(3)
-gmsh.write('t13.msh')
+gmsh.write('../../02_vtk/python/molot.msh')
 
 # Launch the GUI to see the results:
 if '-nopopup' not in sys.argv:
