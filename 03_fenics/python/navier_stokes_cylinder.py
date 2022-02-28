@@ -122,4 +122,3 @@ for n in range(num_steps):
     p_n.assign(p_)
 
     print("Current time: %f / %f" % (t, T))
-

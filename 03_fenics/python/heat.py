@@ -1,18 +1,18 @@
 from fenics import *
 
 T = 2.0            # final time
-num_steps = 10     # number of time steps
+num_steps = 60    # number of time steps
 dt = T / num_steps # time step size
 alpha = 3          # parameter alpha
 beta = 1.2         # parameter beta
 
 # Create mesh and define function space
-nx = ny = 8
-mesh = UnitSquareMesh(nx, ny)
+nx = nz = ny = 32
+mesh = UnitCubeMesh(nx, ny, nz)
 V = FunctionSpace(mesh, 'P', 1)
 
 # Define boundary condition
-u_D = Expression('1 + x[0]*x[0] + alpha*x[1]*x[1] + beta*t', degree=2, alpha=alpha, beta=beta, t=0)
+u_D = Expression('1 + x[0]*x[0] + alpha*x[1]*x[1] + beta*t-alpha*x[2]*x[2]*x[2]', degree=2, alpha=alpha, beta=beta, t=0)
 
 def boundary(x, on_boundary):
     return on_boundary
